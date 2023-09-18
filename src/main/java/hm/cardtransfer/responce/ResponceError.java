@@ -2,12 +2,14 @@ package hm.cardtransfer.responce;
 
 import java.util.Objects;
 
-public class ResponceError extends InternalError {
+public class ResponceError extends RuntimeException {
 
     private String message;
 
     private int id;
 
+    public ResponceError() {
+    }
 
     public ResponceError(String message1) {
         super(message1);

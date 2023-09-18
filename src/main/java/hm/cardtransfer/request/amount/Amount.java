@@ -1,4 +1,4 @@
-package hm.cardtransfer.responce.amount;
+package hm.cardtransfer.request.amount;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -10,6 +10,9 @@ public class Amount {
     @NotBlank
     @Min(1)
     private Integer value;
+
+    public Amount() {
+    }
 
     public Amount(Integer value) {
         this.value = value;
@@ -23,4 +26,8 @@ public class Amount {
         return value;
     }
 
+    @Override
+    public String toString() {
+        return "" + value;
+    }
 }

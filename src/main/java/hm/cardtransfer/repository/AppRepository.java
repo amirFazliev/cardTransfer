@@ -21,7 +21,7 @@ public class AppRepository {
     }
 
     public ConfirmOperationResponce confirmOperation (ConfirmOperationRequest request) {
-        confirmOperationResponce.setOperationId("operationTransferResponce" + request.hashCode());
+        confirmOperationResponce.setOperationId("confirmOperationResponce" + request.hashCode());
         System.out.println("Hello from AppRepository - confirmOperation");
         return confirmOperationResponce;
     }

@@ -11,6 +11,9 @@ public class ConfirmOperationRequest {
         this.code = code;
     }
 
+    public ConfirmOperationRequest() {
+    }
+
     public String getOperationId() {
         return operationId;
     }
