@@ -1,10 +1,11 @@
 package hm.cardtransfer.service;
 
+import hm.cardtransfer.exception.ErrorInputDataImpl;
+import hm.cardtransfer.exception.ErrorTransferImpl;
 import hm.cardtransfer.repository.AppRepository;
 import hm.cardtransfer.request.ConfirmOperationRequest;
 import hm.cardtransfer.request.TransferRequest;
 import hm.cardtransfer.responce.ConfirmOperationResponce;
-import hm.cardtransfer.responce.ResponceError;
 import hm.cardtransfer.responce.TransferResponce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,26 +24,30 @@ public class AppService {
 
     public TransferResponce transferMoneyCardToCard(TransferRequest transferRequest) {
         try {
-            System.out.println("Hello from AppService - transfer");
             TransferResponce responce = appRepository.transferMoneyCardToCard(transferRequest);
             fileLoggerAllMessageTransfer(transferRequest.getCardFromNumber(), transferRequest.getCardToNumber(), transferRequest.getAmount(), "OK");
             return responce;
-        } catch (ResponceError e) {
+        } catch (ErrorInputDataImpl e) {
             fileLoggerAllMessageTransfer(transferRequest.getCardFromNumber(), transferRequest.getCardToNumber(), transferRequest.getAmount(), "Ошибка сервера Error transfer");
-            throw new ResponceError("Ошибка сервера - Error transfer");
+            throw new ErrorInputDataImpl();
+        } catch (ErrorTransferImpl e) {
+            fileLoggerAllMessageTransfer(transferRequest.getCardFromNumber(), transferRequest.getCardToNumber(), transferRequest.getAmount(), "Ошибка сервера Error transfer");
+            throw new ErrorTransferImpl();
         }
 
     }
 
     public ConfirmOperationResponce confirmOperation (ConfirmOperationRequest confirmOperationRequest) {
         try {
-            System.out.println("Hello from AppService - confirmOperation");
             ConfirmOperationResponce confirmOperationResponce = appRepository.confirmOperation(confirmOperationRequest);
             fileLoggerAllMessageConfirmOperation(confirmOperationRequest.getOperationId(), confirmOperationRequest.getCode(), "OK");
             return confirmOperationResponce;
-        } catch (ResponceError e) {
+        } catch (ErrorInputDataImpl e) {
             fileLoggerAllMessageConfirmOperation(confirmOperationRequest.getOperationId(), confirmOperationRequest.getCode(), "Ошибка сервера - Error confirmOperation");
-            throw new ResponceError("Ошибка сервера - Error confirmOperation");
+            throw new ErrorInputDataImpl();
+        } catch (ErrorTransferImpl e) {
+            fileLoggerAllMessageConfirmOperation(confirmOperationRequest.getOperationId(), confirmOperationRequest.getCode(), "Ошибка сервера - Error confirmOperation");
+            throw new ErrorTransferImpl();
         }
 
     }

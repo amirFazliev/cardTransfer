@@ -11,7 +11,7 @@ import static hm.cardtransfer.CardTransferApplication.fileLogTransferInfo;
 
 public class Logger {
 
-    public static void fileLoggerAllMessageTransfer(String cardFromNumber, String cardToNumber, Amount amount, String textResult) {
+    public synchronized static void fileLoggerAllMessageTransfer(String cardFromNumber, String cardToNumber, Amount amount, String textResult) {
         try (FileOutputStream fos = new FileOutputStream(fileLogTransferInfo, true)) {
             byte[] bytes = ("[" + "Transfer money card to card - " + logFormTransfer(cardFromNumber, cardToNumber, amount) + textResult + "]\n").getBytes();
             fos.write(bytes);
@@ -21,7 +21,7 @@ public class Logger {
         }
     }
 
-    public static void fileLoggerAllMessageConfirmOperation(String operationId, String code, String textResult) {
+    public synchronized static void fileLoggerAllMessageConfirmOperation(String operationId, String code, String textResult) {
         try (FileOutputStream fos = new FileOutputStream(fileLogTransferInfo, true)) {
             byte[] bytes = ("[" + "Confirm operation - " + logFormConfirmOperation(operationId, code) + textResult + "]\n").getBytes();
             fos.write(bytes);

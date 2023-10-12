@@ -16,13 +16,11 @@ public class AppRepository {
 
     public TransferResponce transferMoneyCardToCard (TransferRequest request) {
         transferResponce.setOperationId("operationTransferResponce" + request.hashCode());
-        System.out.println("Hello from AppRepository - transfer");
         return transferResponce;
     }
 
     public ConfirmOperationResponce confirmOperation (ConfirmOperationRequest request) {
         confirmOperationResponce.setOperationId("confirmOperationResponce" + request.hashCode());
-        System.out.println("Hello from AppRepository - confirmOperation");
         return confirmOperationResponce;
     }
 
