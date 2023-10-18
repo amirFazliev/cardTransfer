@@ -17,6 +17,14 @@ public class CardExpirationDateValidator implements ConstraintValidator<CardExpi
         if (date == null) {
             return false;
         }
+        String[] parts = date.split("/");
+        int month = Integer.parseInt(parts[0]);
+        int year = Integer.parseInt(parts[1]);
+
+        if (month < 1 || month > 12) {
+            return false;
+        }
+
         Date currentDate = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/yy");
         try {

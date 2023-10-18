@@ -21,16 +21,6 @@ public class Logger {
         }
     }
 
-    public synchronized static void fileLoggerAllMessageConfirmOperation(String operationId, String code, String textResult) {
-        try (FileOutputStream fos = new FileOutputStream(fileLogTransferInfo, true)) {
-            byte[] bytes = ("[" + "Confirm operation - " + logFormConfirmOperation(operationId, code) + textResult + "]\n").getBytes();
-            fos.write(bytes);
-            fos.flush();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private static String logFormTransfer (String cardFromNumber, String cardToNumber, Amount amount) {
 
         return "[" + LocalDateTime.now().format (DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm:ss"))
@@ -38,14 +28,6 @@ public class Logger {
                 + ", карта зачисления - " + cardToNumber
                 + ", сумма - " + amount.getValue()
                 + ", комиссия - " + amount.getValue()*0.01
-                + ", результат операции, если был - ";
-    }
-
-    private static String logFormConfirmOperation (String operationId, String code) {
-
-        return "[" + LocalDateTime.now().format (DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm:ss"))
-                + ", Id операции - " + operationId
-                + ", код верификации - " + code
                 + ", результат операции, если был - ";
     }
 }
