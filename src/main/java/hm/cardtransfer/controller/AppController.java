@@ -25,8 +25,7 @@ public class AppController {
 
     @PostMapping("/transfer")
     public TransferResponce transferMoneyCardToCard (@RequestBody @Validated TransferRequest transferRequest) {
-        throw new ErrorInputDataImpl();
-//        return appService.transferMoneyCardToCard(transferRequest);
+        return appService.transferMoneyCardToCard(transferRequest);
     }
 
     @PostMapping("/confirmOperation")
