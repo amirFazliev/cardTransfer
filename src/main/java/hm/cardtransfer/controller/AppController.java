@@ -29,7 +29,7 @@ public class AppController {
     }
 
     @PostMapping("/confirmOperation")
-    public ConfirmOperationResponce confirmOperation ( @RequestBody @Validated ConfirmOperationRequest confirmOperationRequest) {
+    public ConfirmOperationResponce confirmOperation (@RequestBody @Validated ConfirmOperationRequest confirmOperationRequest) {
         return appService.confirmOperation(confirmOperationRequest);
     }
 }
