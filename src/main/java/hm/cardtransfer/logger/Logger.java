@@ -21,6 +21,16 @@ public class Logger {
         }
     }
 
+    public synchronized static void fileLoggerAllMessageTransfer() {
+        try (FileOutputStream fos = new FileOutputStream(fileLogTransferInfo, true)) {
+            byte[] bytes = ("[" + "Transfer money card to card - " + LocalDateTime.now().format (DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm:ss")) + " - ОШИБКА" + "]\n").getBytes();
+            fos.write(bytes);
+            fos.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static String logFormTransfer (String cardFromNumber, String cardToNumber, Amount amount) {
 
         return "[" + LocalDateTime.now().format (DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm:ss"))

@@ -21,12 +21,15 @@ public class ExceptionHandlerAdviceApp {
         e.setMessage("Server Exception");
         e.setId(idException.incrementAndGet());
 
-        String cardFromNumber = request.getParameter("cardFromNumber");
-        String cardToNumber = request.getParameter("cardToNumber");
-        Amount amount = new Amount();
-        amount.setValue(Integer.parseInt(request.getParameter("amount")));
+        fileLoggerAllMessageTransfer();
 
-        fileLoggerAllMessageTransfer(cardFromNumber, cardToNumber, amount, "Ошибка Server Exception");
+
+//        String cardFromNumber = request.getParameter("cardFromNumber");
+//        String cardToNumber = request.getParameter("cardToNumber");
+//        Amount amount = new Amount();
+//        amount.setValue(Integer.parseInt(request.getParameter("amount")));
+//
+//        fileLoggerAllMessageTransfer(cardFromNumber, cardToNumber, amount, "Ошибка Server Exception");
 
         return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -36,12 +39,16 @@ public class ExceptionHandlerAdviceApp {
         e.setMessage("Bad Request Exception");
         e.setId(idException.incrementAndGet());
 
-        String cardFromNumber = request.getParameter("cardFromNumber");
-        String cardToNumber = request.getParameter("cardToNumber");
-        Amount amount = new Amount();
-        amount.setValue(Integer.parseInt(request.getParameter("amount")));
+        fileLoggerAllMessageTransfer();
 
-        fileLoggerAllMessageTransfer(cardFromNumber, cardToNumber, amount, "Ошибка Bad Request Exception");
+
+//        String cardFromNumber = request.getParameter("cardFromNumber");
+//        String cardToNumber = request.getParameter("cardToNumber");
+//        Amount amount = new Amount();
+//        amount.setValue(Integer.parseInt(request.getParameter("amount")));
+//
+//        fileLoggerAllMessageTransfer(cardFromNumber, cardToNumber, amount, "Ошибка Bad Request Exception");
+
         return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
     }
 
@@ -52,12 +59,14 @@ public class ExceptionHandlerAdviceApp {
         error.setId(idException.incrementAndGet());
         error.setMessage(message);
 
-        String cardFromNumber = request.getParameter("cardFromNumber");
-        String cardToNumber = request.getParameter("cardToNumber");
-        Amount amount = new Amount();
-        amount.setValue(Integer.parseInt(request.getParameter("amount")));
+        fileLoggerAllMessageTransfer();
 
-        fileLoggerAllMessageTransfer(cardFromNumber, cardToNumber, amount, "Ошибка Bad Request Exception");
+//        String cardFromNumber = request.getParameter("cardFromNumber");
+//        String cardToNumber = request.getParameter("cardToNumber");
+//        Amount amount = new Amount();
+//        amount.setValue(Integer.parseInt(request.getParameter("amount")));
+//
+//        fileLoggerAllMessageTransfer(cardFromNumber, cardToNumber, amount, "Ошибка Bad Request Exception");
 
         return new ResponseEntity<>(error.getMessage(), HttpStatus.BAD_REQUEST);
     }
